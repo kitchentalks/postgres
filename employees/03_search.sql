@@ -28,6 +28,25 @@ select * from employees where department_id in
 ( 
 select id from departments where boss_id in 
 (
-select id from employees where name like 'employee-56' 
+select id from employees where name like 'employee-56%' 
 )
 );
+
+#
+
+CREATE INDEX tbl_col_text_pattern_ops_idx ON employees(name text_pattern_ops);
+
+#
+create INDEX tbl_col_text_pattern_ops_idx on employees using gin(to_tsvector('english',name));
+
+#
+select * from employees where department_id in 
+( 
+select id from departments where boss_id in 
+(
+select id from employees where to_tsvector('english',name) @@  to_tsquery('employee-56*') 
+)
+);
+
+
+
