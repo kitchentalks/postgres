@@ -1,5 +1,5 @@
-insert into departments(name,boss_id) select 'depto-'||s.a , null from generate_series(1,10000) as s(a);
-insert into employees(name) select 'employee-'||s.a  from generate_series(1,1000000) as s(a);
+insert into departments(name,boss_id) select 'depto-'||s.a , null from generate_series(1,1000) as s(a);
+insert into employees(name) select 'employee-'||s.a  from generate_series(1,10000) as s(a);
 
 update employees e set birthday=(
 select s.a from generate_series('1970-01-01 00:00'::timestamp,
