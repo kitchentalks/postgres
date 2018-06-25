@@ -19,6 +19,10 @@ select * from employees where department_id in
 select id from departments where boss_id =  100
 )
 
+#search by birthday
+
+explain analyze select * from employees where birthday > '1980-01-01'::date AND birthday < '1980-12-31'::date
+
 #search by boss name
 select * from employees where department_id in 
 ( 
