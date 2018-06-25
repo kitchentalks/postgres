@@ -3,6 +3,7 @@ select * from pg_stat_activity where state = 'active';
 select xmin,xmax,*
 from employees limit 1;
 
+SELECT pg_terminate_backend(pg_stat_activity.pid);
 
 show all;
 
